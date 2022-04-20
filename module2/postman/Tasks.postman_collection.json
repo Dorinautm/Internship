@@ -1,0 +1,712 @@
+{
+	"info": {
+		"_postman_id": "2ed0eb2c-10ff-48e0-8d97-763d813fbf2b",
+		"name": "Tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//Here we generate random string for task name\r",
+							"var letters = pm.globals.get(\"RandomString\");\r",
+							"\r",
+							"function GenerateRandomstring(length){\r",
+							"    var result = '';\r",
+							"    var strLength = letters.length;\r",
+							"    for(var i = 0; i<length; i++){\r",
+							"        result += letters.charAt(Math.floor(Math.random() * strLength));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"pm.environment.set(\"TaskTitle\", GenerateRandomstring(20));\r",
+							"\r",
+							"//Here we generate a random priority\r",
+							"var priority = pm.environment.get(\"Priority\").split(',');\r",
+							"var selectedPriority = priority[Math.floor(Math.random() * priority.length)];\r",
+							"\r",
+							"pm.environment.set(\"SelectedPriority\", selectedPriority);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"var id = jsonData.id;\r",
+							"\r",
+							"pm.environment.set(\"TaskID\", id);\r",
+							"\r",
+							"pm.test(\"Status code is 201 - task created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify task name\", function () {\r",
+							"    pm.expect(jsonData.subject).to.eql(pm.environment.get(\"TaskTitle\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify priority\", function () {\r",
+							"    pm.expect(jsonData.priority.toString()).to.eql(pm.environment.get(\"SelectedPriority\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": null,\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 3,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": null,\r\n    \"employeeId\": 209,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify task - title",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//Here we generate random string to modify title \r",
+							"var letters = pm.globals.get(\"RandomString\");\r",
+							"\r",
+							"function GenerateRandomstring(length){\r",
+							"    var result = '';\r",
+							"    var strLength = letters.length;\r",
+							"    for(var i = 0; i<length; i++){\r",
+							"        result += letters.charAt(Math.floor(Math.random() * strLength));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"TaskTitle\", GenerateRandomstring(20));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code 200 - modify task name\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify the modificated name\", function () {\r",
+							"    pm.expect(jsonData.subject).to.eql(pm.environment.get(\"TaskTitle\"));\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": 0,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\",\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 3,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": \"<p>aaaaaaaaaaaa</p>\",\r\n    \"employeeId\": 209\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a created task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// //Here we get a existing task\r",
+							"\r",
+							"// var task = pm.environment.get(\"TaskID\");\r",
+							"// var selectedTask = task[Math.floor(Math.random() * task.length)];\r",
+							"\r",
+							"// pm.environment.set(\"SelectedTask\", selectedTask);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200 - get an existing task\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check task id\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"TaskID\"));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": null,\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 3,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": null,\r\n    \"employeeId\": 209,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a created task - inexistent task",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 404 - task doensn't exist\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Entity of type ActivityTask with id: \" + pm.environment.get(\"TaskID\")+ \"123\" + \" not found\")\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": null,\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 3,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": null,\r\n    \"employeeId\": 209,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}123",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create task - invalid priority",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//Here we have an invalid priority\r",
+							"var letters = pm.globals.get(\"RandomString\");\r",
+							"\r",
+							"function GenerateRandomstring(length){\r",
+							"    var result = '';\r",
+							"    var strLength = letters.length;\r",
+							"    for(var i = 0; i<length; i++){\r",
+							"        result += letters.charAt(Math.floor(Math.random() * strLength));\r",
+							"    }\r",
+							"    return result;\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"SelectedPriority\", GenerateRandomstring(4));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code 400 - invalid priority, was expected a number\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": null,\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 30,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": 0,\r\n    \"employeeId\": 209,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create task - invalid DateTime",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"//Here we have an invalid dateTime\r",
+							"// var letters = pm.globals.get(\"RandomINT\");\r",
+							"\r",
+							"// function GenerateRandomstring(length){\r",
+							"//     var result = '';\r",
+							"//     var strLength = letters.length;\r",
+							"//     for(var i = 0; i<length; i++){\r",
+							"//         result += letters.charAt(Math.floor(Math.random() * strLength));\r",
+							"//     }\r",
+							"//     return result;\r",
+							"// }\r",
+							"\r",
+							"// pm.environment.set(\"SelectedTime\", GenerateRandomstring(15));"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code 400 - invalid DateTime format\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    pm.expect(jsonData.errors.deadline[0]).to.eql(\"Could not convert string to DateTimeOffset: aaaaaaaaaaaaaaaaaaaaaaaaa. Path 'deadline', line 7, position 43.\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": null,\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 30,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"aaaaaaaaaaaaaaaaaaaaaaaaa\",\r\n    \"description\": 0,\r\n    \"employeeId\": 209,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify task - invalid data type",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400 - invalid data type\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    pm.expect(jsonData.errors.entityId[0]).to.eql(\"Could not convert string to integer: first. Path 'entityId', line 3, position 23.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 6,\r\n    \"entityId\": \"first\",\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\",\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 3,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": \"<p>aaaaaaaaaaaa</p>\",\r\n    \"employeeId\": 209\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify task - invalid nr of characters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 400 - invalid character limit \", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check error message\", function () {\r",
+							"    pm.expect(jsonData.errors.status[0]).to.eql(\"Error converting value 33333333333333333333333333 to type 'ProjectPlan.Core.Enums.ActivityTaskStatusEnum'. Path 'status', line 6, position 40.\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 1,\r\n    \"entityId\": 0,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\",\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 33333333333333333333333333,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": \"<p>aaaaaaaaaaaa</p>\",\r\n    \"employeeId\": 9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify task - unnathorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 403 - you need access to this resource \", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Toen}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entityType\": 1,\r\n    \"entityId\": 0,\r\n    \"createdBy\": \"dorina.balaur@amdaris.com\",\r\n    \"subject\": \"{{TaskTitle}}\",\r\n    \"status\": 33333333333333333333333333,\r\n    \"priority\": \"{{SelectedPriority}}\",\r\n    \"deadline\": \"2022-03-31T00:00:00.000Z\",\r\n    \"description\": \"<p>aaaaaaaaaaaa</p>\",\r\n    \"employeeId\": 9\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 404 - task deleted \", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check task is deleted\", function () {\r",
+							"    pm.expect(jsonData.message).to.eql(\"Entity of type ActivityTask with id: \" + pm.environment.get(\"TaskID\") + \" not found\")\r",
+							"\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{Token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Domain}}/api/activity-task/{{TaskID}}",
+					"host": [
+						"{{Domain}}"
+					],
+					"path": [
+						"api",
+						"activity-task",
+						"{{TaskID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
