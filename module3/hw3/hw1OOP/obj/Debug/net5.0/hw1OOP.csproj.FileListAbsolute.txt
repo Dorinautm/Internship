@@ -1,0 +1,16 @@
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.csproj.AssemblyReference.cache
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.GeneratedMSBuildEditorConfig.editorconfig
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.AssemblyInfoInputs.cache
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.AssemblyInfo.cs
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.csproj.CoreCompileInputs.cache
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.exe
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.deps.json
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.runtimeconfig.json
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.runtimeconfig.dev.json
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.dll
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\ref\hw1OOP.dll
+D:\internship\module3\hw3\hw1OOP\bin\Debug\net5.0\hw1OOP.pdb
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.dll
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\ref\hw1OOP.dll
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.pdb
+D:\internship\module3\hw3\hw1OOP\obj\Debug\net5.0\hw1OOP.genruntimeconfig.cache

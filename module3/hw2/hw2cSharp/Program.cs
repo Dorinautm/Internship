@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace C_Sharp_Lesson_3_Homework
 {
@@ -153,6 +155,88 @@ namespace C_Sharp_Lesson_3_Homework
             homework.GetSummOfDiagonalsElements(matrix2);
             homework.StarPrinter(5);
             homework.SortList(list);
+
+            Console.WriteLine("--------------------------------------------");
+
+            /*int[] nr_list = new int[] { 1, 2, 3 };
+            List<int> list2 = new();
+            IList<int> list3 = new List<int>() { -5, 8, -7, 0, 44, 121, -8 };
+
+            ArrayList arr_list = new ArrayList();
+            arr_list.Add("billie");
+            arr_list.Add(12);
+            string first_element1 = (string)arr_list[0];
+            arr_list.Insert(2, 2.3);
+
+            SortedList<int, string> sorted_list = new SortedList<int, string>();
+            sorted_list.Add(2, "Two");
+            sorted_list.Add(4, null);
+
+            IDictionary<int, string> dict = new Dictionary<int, string>();
+            dict.Add(1, "Two");
+            dict.Add(2, "Three");
+            dict.Remove(1);
+            dict.Add(3, "Four");
+            dict[3] = "444";
+            for (int i = 0; i < dict.Count; i++)
+            {
+                Console.WriteLine("Key: {0}, Value: {1}",
+                                                        dict.ElementAt(i).Key,
+                                                        dict.ElementAt(i).Value);
+            }
+
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add(1, "one");
+            hashtable.Add(2, "two");
+            foreach (DictionaryEntry de in hashtable)
+            {
+                Console.WriteLine(de.Value);
+            }
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(1);
+            stack.Push(2);
+            if (stack.Count > 0)
+            {
+                Console.WriteLine(stack.Peek());
+            }
+            foreach (int i in stack)
+                Console.WriteLine(i);
+
+            Queue<string> queue = new Queue<string>();
+            queue.Enqueue("A");
+            queue.Enqueue("B");
+            queue.Dequeue();
+            foreach (var i in queue)
+                Console.WriteLine(i);*/
+
+
+            /*list2.Add(9);
+            list2.Add(1);
+            list2.Add(5);
+            list2.Insert(3,2);
+            //list2.Remove(9);
+            Console.WriteLine(list2.IndexOf(5));
+            list2.Sort();
+            //list2.Reverse();
+            int x = list2.Count();
+            Console.WriteLine(x);
+            Console.WriteLine(list2.GetHashCode());*/
+
+            /*Console.WriteLine(nr_list[0]);
+            nr_list[2] = -2;
+            Console.WriteLine(nr_list.Length);
+            Console.WriteLine(nr_list.GetHashCode());
+            Console.WriteLine(nr_list.Sum());
+            Array.Sort(nr_list);*/
+            //Array.Reverse(nr_list);
+
+            /*foreach (var i in arr_list)
+            {
+                Console.WriteLine(i);
+            }*/
+
+
         }
 
     }
