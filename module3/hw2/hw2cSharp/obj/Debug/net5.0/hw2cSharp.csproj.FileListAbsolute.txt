@@ -1,0 +1,16 @@
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.exe
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.deps.json
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.runtimeconfig.json
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.runtimeconfig.dev.json
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.dll
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\ref\hw2cSharp.dll
+D:\internship\module3\hw2\hw2cSharp\bin\Debug\net5.0\hw2cSharp.pdb
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.csproj.AssemblyReference.cache
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.GeneratedMSBuildEditorConfig.editorconfig
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.AssemblyInfoInputs.cache
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.AssemblyInfo.cs
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.csproj.CoreCompileInputs.cache
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.dll
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\ref\hw2cSharp.dll
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.pdb
+D:\internship\module3\hw2\hw2cSharp\obj\Debug\net5.0\hw2cSharp.genruntimeconfig.cache
