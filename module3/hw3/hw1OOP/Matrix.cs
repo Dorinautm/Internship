@@ -8,12 +8,21 @@ namespace hw1OOP
 {
     class Matrix
     {       
-        private int first_diagonal = 0;
-        private int second_diagonal = 0;
+        private int _first_diagonal;
+        private int _second_diagonal;
+        private bool _isSquare;
 
-        public void GetSum_firstDiagonal(int [,] matrixOfIntegers)
+        public bool IsSquare(int[,] matrixOfIntegers)
         {
             if (matrixOfIntegers.GetLength(0) == matrixOfIntegers.GetLength(1))
+            {
+                return true;
+            }
+            return false;
+        }
+        public void GetSum_firstDiagonal(int [,] matrixOfIntegers)
+        {
+            if (IsSquare(matrixOfIntegers))
             {
                 for (int i = 0; i < matrixOfIntegers.GetLength(0); i++)
                 {
@@ -21,20 +30,17 @@ namespace hw1OOP
                     {
                         if (i == j)
                         {
-                            first_diagonal += matrixOfIntegers[i, j];
+                            _first_diagonal += matrixOfIntegers[i, j];
                         }
                     }
                 }
-                Console.WriteLine("First diagonal " + first_diagonal);
-            }
-            else
-            {
-                Console.WriteLine("Matrix doesn't have diagonals");
+                Console.WriteLine("First diagonal " + _first_diagonal);
             }
         }
+
         public void GetSum_secondDiagonal(int[,] matrixOfIntegers)
         {
-            if (matrixOfIntegers.GetLength(0) == matrixOfIntegers.GetLength(1))
+            if (IsSquare(matrixOfIntegers))
             {
                 for (int i = 0; i < matrixOfIntegers.GetLength(0); i++)
                 {
@@ -42,13 +48,16 @@ namespace hw1OOP
                     {
                         if ((i + j) == (matrixOfIntegers.GetLength(1) - 1))
                         {
-                            second_diagonal += matrixOfIntegers[i, j];
+                            _second_diagonal += matrixOfIntegers[i, j];
                         }
                     }
                 }
-                Console.WriteLine("First diagonal " + second_diagonal);
+                Console.WriteLine("Second diagonal " + _second_diagonal);
             }
-            else
+        }
+        public void IsSquare()
+        {
+            if (_isSquare == false)
             {
                 Console.WriteLine("Matrix doesn't have diagonals");
             }
