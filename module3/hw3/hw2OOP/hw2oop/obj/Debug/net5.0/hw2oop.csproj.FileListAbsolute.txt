@@ -1,0 +1,16 @@
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.exe
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.deps.json
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.runtimeconfig.json
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.runtimeconfig.dev.json
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.dll
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\ref\hw2oop.dll
+D:\internship\module3\hw3\hw2OOP\hw2oop\bin\Debug\net5.0\hw2oop.pdb
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.csproj.AssemblyReference.cache
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.GeneratedMSBuildEditorConfig.editorconfig
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.AssemblyInfoInputs.cache
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.AssemblyInfo.cs
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.csproj.CoreCompileInputs.cache
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.dll
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\ref\hw2oop.dll
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.pdb
+D:\internship\module3\hw3\hw2OOP\hw2oop\obj\Debug\net5.0\hw2oop.genruntimeconfig.cache

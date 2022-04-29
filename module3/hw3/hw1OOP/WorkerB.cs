@@ -51,7 +51,7 @@ namespace hw1OOP
             {
                 return true;
             }
-            else return false;
+             return false;
         }
     }
 }

@@ -1,0 +1,60 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\internship\\module3\\hw3\\hw2OOP\\hw2oop\\hw2oop.csproj": {}
+  },
+  "projects": {
+    "D:\\internship\\module3\\hw3\\hw2OOP\\hw2oop\\hw2oop.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\internship\\module3\\hw3\\hw2OOP\\hw2oop\\hw2oop.csproj",
+        "projectName": "hw2oop",
+        "projectPath": "D:\\internship\\module3\\hw3\\hw2OOP\\hw2oop\\hw2oop.csproj",
+        "packagesPath": "C:\\Users\\boo\\.nuget\\packages\\",
+        "outputPath": "D:\\internship\\module3\\hw3\\hw2OOP\\hw2oop\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\boo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
